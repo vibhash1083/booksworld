@@ -27,8 +27,10 @@ public class BookRestController {
 		return books;
 	}
 
-	@PostMapping("/api/books")
+	@PostMapping(path = "/api/books", consumes = "application/json", produces = "application/json")
 	public void saveBook(@RequestBody Book book) {
+		System.out.println(book.getName());
+		System.out.println(book.getAuthor());
 		bookService.saveBook(book);
 		System.out.println("Book Saved Successfully");
 	}
