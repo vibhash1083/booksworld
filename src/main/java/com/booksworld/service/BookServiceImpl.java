@@ -1,6 +1,7 @@
 package com.booksworld.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,22 @@ public class BookServiceImpl implements BookService {
 	public void saveBook(Book book) {
 		  bookRepository.save(book);
 
+	}
+
+	@Override
+	public Book getBook(Long bookId) {
+		  Optional<Book> optBook = bookRepository.findById(bookId);
+		  return optBook.get();
+	}
+
+	@Override
+	public void deleteBook(Long bookId) {
+		bookRepository.deleteById(bookId);
+	}
+
+	@Override
+	public void updateBook(Book book) {
+		bookRepository.save(book);
+		
 	}
 }
