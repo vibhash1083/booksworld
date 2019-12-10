@@ -14,4 +14,8 @@ public interface BookService {
 	 public void deleteBook(Long bookId);
 	 
 	 public void updateBook(Book book);
+	 
+	 public Book requestBook(Long bookId);
+	 
+	 public void lendBook(Long bookId, Long userId);
 }
