@@ -14,14 +14,14 @@ import javax.persistence.Table;
 import java.util.Date;
 
 
-enum Status{
-	AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
-}
+
 
 @Entity
 @Table(name = "BOOK")
 public class Book {
-	
+	public enum Statu{
+		AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
+	}
 
 	@Id
 	@Column(name = "BOOK_ID")
@@ -64,13 +64,13 @@ public class Book {
 	
 	@Column(name = "BOOK_STATUS")
 	@Enumerated(EnumType.STRING)
-	private Status status;
+	private Statu status;
 
-	public Status getStatus() {
+	public Statu getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(Statu status) {
 		this.status = status;
 	}
 

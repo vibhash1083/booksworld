@@ -30,16 +30,16 @@ public class Transaction {
 	private long borrowerId;
 	
 	@Column(name = "BORROWED_DATE")
-	private Date borrowedDate;
+	private java.sql.Date borrowedDate;
 	
 	@Column(name = "ESTIMATED_RETURN_DATE")
-	private Date estimatedReturnDate;
+	private java.sql.Date estimatedReturnDate;
 	
 	@Column(name = "MEETING_LOCATION")
 	private String meetingLocation;
 	
 	@Column(name = "ACTUAL_RETURN_DATE")
-	private Date actualReturnDate;
+	private java.sql.Date actualReturnDate;
 
 	@Column(name = "BOOK_STATUS")
 	@Enumerated(EnumType.STRING)
@@ -82,21 +82,7 @@ public class Transaction {
 		this.borrowerId = borrowerId;
 	}
 
-	public Date getBorrowedDate() {
-		return borrowedDate;
-	}
-
-	public void setBorrowedDate(Date borrowedDate) {
-		this.borrowedDate = borrowedDate;
-	}
-
-	public Date getEstimatedReturnDate() {
-		return estimatedReturnDate;
-	}
-
-	public void setEstimatedReturnDate(Date estimatedReturnDate) {
-		this.estimatedReturnDate = estimatedReturnDate;
-	}
+	
 
 	public String getMeetingLocation() {
 		return meetingLocation;
@@ -106,13 +92,30 @@ public class Transaction {
 		this.meetingLocation = meetingLocation;
 	}
 
-	public Date getActualReturnDate() {
+	public java.sql.Date getBorrowedDate() {
+		return borrowedDate;
+	}
+
+	public void setBorrowedDate(java.sql.Date borrowedDate) {
+		this.borrowedDate = borrowedDate;
+	}
+
+	public java.sql.Date getEstimatedReturnDate() {
+		return estimatedReturnDate;
+	}
+
+	public void setEstimatedReturnDate(java.sql.Date estimatedReturnDate) {
+		this.estimatedReturnDate = estimatedReturnDate;
+	}
+
+	public java.sql.Date getActualReturnDate() {
 		return actualReturnDate;
 	}
 
-	public void setActualReturnDate(Date actualReturnDate) {
+	public void setActualReturnDate(java.sql.Date actualReturnDate) {
 		this.actualReturnDate = actualReturnDate;
 	}
+
 	
 	
 	
