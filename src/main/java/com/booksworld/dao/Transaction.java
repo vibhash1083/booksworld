@@ -1,7 +1,5 @@
 package com.booksworld.dao;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 enum Status{
-	AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
+	AVAILABLE,LENT
 }
 
 @Entity
@@ -30,17 +28,17 @@ public class Transaction {
 	private long borrowerId;
 	
 	@Column(name = "BORROWED_DATE")
-	private Date borrowedDate;
+	private String borrowedDate;
 	
 	@Column(name = "ESTIMATED_RETURN_DATE")
-	private Date estimatedReturnDate;
+	private String estimatedReturnDate;
 	
 	@Column(name = "MEETING_LOCATION")
 	private String meetingLocation;
 	
 	@Column(name = "ACTUAL_RETURN_DATE")
-	private Date actualReturnDate;
-
+	private String actualReturnDate;
+	
 	@Column(name = "BOOK_STATUS")
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -66,20 +64,44 @@ public class Transaction {
 		this.borrowerId = borrowerId;
 	}
 
-	public Date getBorrowedDate() {
+	public String getBorrowedDate() {
 		return borrowedDate;
 	}
 
-	public void setBorrowedDate(Date borrowedDate) {
+	public void setBorrowedDate(String borrowedDate) {
 		this.borrowedDate = borrowedDate;
 	}
 
-	public Date getEstimatedReturnDate() {
+	public String getEstimatedReturnDate() {
 		return estimatedReturnDate;
 	}
 
-	public void setEstimatedReturnDate(Date estimatedReturnDate) {
+	public void setEstimatedReturnDate(String estimatedReturnDate) {
 		this.estimatedReturnDate = estimatedReturnDate;
+	}
+
+	public String getActualReturnDate() {
+		return actualReturnDate;
+	}
+
+	public void setActualReturnDate(String actualReturnDate) {
+		this.actualReturnDate = actualReturnDate;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public User getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(User ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public String getMeetingLocation() {
@@ -89,16 +111,5 @@ public class Transaction {
 	public void setMeetingLocation(String meetingLocation) {
 		this.meetingLocation = meetingLocation;
 	}
-
-	public Date getActualReturnDate() {
-		return actualReturnDate;
-	}
-
-	public void setActualReturnDate(Date actualReturnDate) {
-		this.actualReturnDate = actualReturnDate;
-	}
-	
-	
-	
 
 }

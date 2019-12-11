@@ -42,13 +42,13 @@ public class Book {
 	private User ownerId;
 	
 	@Column(name = "BOOK_CREATED_DATE")
-	private Date createdDate;
+	private String createdDate;
 	
 	@Column(name = "BOOK_DELETED_DATE")
-	private Date deletedDate;
+	private String deletedDate;
 	
 	@Column(name = "BOOK_UPDATED_DATE")
-	private Date updatedDate;
+	private String updatedDate;
 	
 	@Column(name = "BOOK_PAGES")
 	private int pages;
@@ -104,27 +104,37 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public Date getCreatedDate() {
+	
+	
+	public User getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(User ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public Date getDeletedDate() {
+	public String getDeletedDate() {
 		return deletedDate;
 	}
 
-	public void setDeletedDate(Date deletedDate) {
+	public void setDeletedDate(String deletedDate) {
 		this.deletedDate = deletedDate;
 	}
 
-	public Date getUpdatedDate() {
+	public String getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(Date updatedDate) {
+	public void setUpdatedDate(String updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
