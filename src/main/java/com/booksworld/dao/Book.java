@@ -1,5 +1,6 @@
 package com.booksworld.dao;
 
+import com.booksworld.dao.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,9 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
-enum Status{
-	AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
-}
+
 @Entity
 @Table(name = "BOOK")
 public class Book {
@@ -43,9 +42,6 @@ public class Book {
 	@ManyToOne
 	@JoinColumn(name = "OWNER_ID", referencedColumnName = "EMP_ID")
 	private User ownerId;
-	
-	@Enumerated(EnumType.STRING)
-	private Status status;
 	
 	@Column(name = "BOOK_CREATED_DATE")
 	private Date createdDate;
