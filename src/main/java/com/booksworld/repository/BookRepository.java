@@ -14,7 +14,8 @@ import com.booksworld.dao.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book,Long>{
 	
-	@Query("select b.* from BOOK b where b.BOOK_NAME = :name")
+	@Query( value = "select * from BOOK  where BOOK.BOOK_NAME = :name",
+			 nativeQuery = true)
 	 List<Book> findBybook_name(@Param("name") String name) ;
 
 }

@@ -13,13 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-enum Status{
-	AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
-}
+
 
 @Entity
 @Table(name = "TRANSACTION")
 public class Transaction {
+	
+	public enum Status{
+		AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
+	}
 	
 	@Id
 	@Column(name = "BOOK_ID")
@@ -33,13 +35,13 @@ public class Transaction {
 	private Date borrowedDate;
 	
 	@Column(name = "ESTIMATED_RETURN_DATE")
-	private Date estimatedReturnDate;
+	private String estimatedReturnDate;
 	
 	@Column(name = "MEETING_LOCATION")
 	private String meetingLocation;
 	
 	@Column(name = "ACTUAL_RETURN_DATE")
-	private Date actualReturnDate;
+	private String actualReturnDate;
 
 	@Column(name = "BOOK_STATUS")
 	@Enumerated(EnumType.STRING)
@@ -52,6 +54,22 @@ public class Transaction {
 
 	public Long getBookId() {
 		return bookId;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public User getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(User ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public void setBookId(Long bookId) {
@@ -74,12 +92,12 @@ public class Transaction {
 		this.borrowedDate = borrowedDate;
 	}
 
-	public Date getEstimatedReturnDate() {
+	public String getEstimatedReturnDate() {
 		return estimatedReturnDate;
 	}
 
-	public void setEstimatedReturnDate(Date estimatedReturnDate) {
-		this.estimatedReturnDate = estimatedReturnDate;
+	public void setEstimatedReturnDate(String string) {
+		this.estimatedReturnDate = string;
 	}
 
 	public String getMeetingLocation() {
@@ -90,12 +108,12 @@ public class Transaction {
 		this.meetingLocation = meetingLocation;
 	}
 
-	public Date getActualReturnDate() {
+	public String getActualReturnDate() {
 		return actualReturnDate;
 	}
 
-	public void setActualReturnDate(Date actualReturnDate) {
-		this.actualReturnDate = actualReturnDate;
+	public void setActualReturnDate(String string) {
+		this.actualReturnDate = string;
 	}
 	
 	

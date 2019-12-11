@@ -1,12 +1,15 @@
 package com.booksworld.service;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.booksworld.dao.Book;
 import com.booksworld.dao.Transaction;
+import com.booksworld.dao.Transaction.Status;
 import com.booksworld.repository.TransactionRepository;
 
 @Service
@@ -18,14 +21,36 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	@Override
 	public Transaction getTransaction(Long bookId) {
-		 Optional<Transaction> optTrans = transRepository.findById(bookId);
+		Optional<Transaction> optTrans = transRepository.findById(bookId);
 		return optTrans.get();
 	}
 
+	
+	@Override
+	public void initiateReturnBook(Book book, Transaction trans, Long bookId) {
+		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {
+//			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();  
+//			System.out.println(dtf.format(now)); 
+			trans.setEstimatedReturnDate(dtf.format(now));
+			trans.setStatus(Status.INITIATE_REQUEST);
+//			book.setStatus(Status.AVAILABLE);
+		}
+		
+	}
 
 	@Override
-	public void returnBook(Transaction trans, Long bookId, Long userId) {
-				
+	public void returnBook(Book book, Transaction trans, Long bookId) {
+		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {
+//			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();  
+//			System.out.println(dtf.format(now)); 
+			trans.setActualReturnDate(dtf.format(now));
+			trans.setStatus(Status.AVAILABLE);
+			book.setStatus(Status.AVAILABLE);
+		}
 	}
 	
 	
