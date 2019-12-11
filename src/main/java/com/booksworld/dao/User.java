@@ -24,6 +24,8 @@ public class User {
 	
 	@Column(name = "IMAGE")
 	private String image_path;
+	
+	
 
 	public long getEmpId() {
 		return empId;

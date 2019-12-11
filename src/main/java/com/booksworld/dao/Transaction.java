@@ -40,7 +40,7 @@ public class Transaction {
 	
 	@Column(name = "ACTUAL_RETURN_DATE")
 	private Date actualReturnDate;
-	
+
 	@Column(name = "BOOK_STATUS")
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -48,6 +48,7 @@ public class Transaction {
 	@ManyToOne
 	@JoinColumn(name = "OWNER_ID", referencedColumnName = "EMP_ID")
 	private User ownerId;
+
 
 	public Long getBookId() {
 		return bookId;
