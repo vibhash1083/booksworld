@@ -8,7 +8,9 @@ public interface TransactionService {
 
 	public Transaction getTransaction(Long bookId);
 
-	public void returnBook(Transaction trans);
+	public void returnBook(Transaction trans, Long bookId, Long userId);
+
+	
 
 }
 

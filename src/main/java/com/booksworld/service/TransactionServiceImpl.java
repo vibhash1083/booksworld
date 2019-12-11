@@ -24,9 +24,10 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 	@Override
-	public void returnBook(Transaction trans) {
+	public void returnBook(Transaction trans, Long bookId, Long userId) {
 				
 	}
-
+	
+	
 }
 
