@@ -57,4 +57,17 @@ public class BookRestController {
 			bookService.updateBook(book);
 		}
 	}
+	@PutMapping("/api/book/request/{bookId}/{userId}")
+	public Book requestBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId,@PathVariable(name = "userId") Long userId) {
+		Book existing_book = bookService.getBook(bookId);
+		if (existing_book != null) {
+			return existing_book;
+		}
+		return existing_book;
+	}
+	@PutMapping("/api/book/lend/{bookId}/{userId}")
+	public void lendBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId,@PathVariable(name = "userId") Long userId) {
+		Book existing_book = bookService.getBook(bookId);
+		
+	}
 }

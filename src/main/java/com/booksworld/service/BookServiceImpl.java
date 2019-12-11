@@ -57,7 +57,6 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void lendBook(Long bookId, Long userId) {
-		// TODO Auto-generated method stub
 		
 	}
 }
