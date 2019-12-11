@@ -3,6 +3,7 @@ package com.booksworld.service;
 import java.util.List;
 
 import com.booksworld.dao.Book;
+import com.booksworld.dao.Transaction;
 
 public interface BookService {
 	 public List<Book> retrieveBooks();
@@ -18,4 +19,5 @@ public interface BookService {
 	 public Book requestBook(Long bookId);
 	 
 	 public void lendBook(Long bookId, Long userId);
+
 }
