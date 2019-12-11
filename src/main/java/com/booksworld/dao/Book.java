@@ -1,8 +1,12 @@
 package com.booksworld.dao;
 
 import com.booksworld.dao.User;
+import com.booksworld.dao.Transaction.Status;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +20,10 @@ import java.util.Date;
 @Table(name = "BOOK")
 public class Book {
 	
+	public enum BStatus{
+		AVAILABLE,LENT
+	}
+	
 
 	@Id
 	@Column(name = "BOOK_ID")
@@ -27,6 +35,22 @@ public class Book {
 
 	@Column(name = "BOOK_AUTHOR")
 	private String author;
+	
+	@Column(name = "BOOK_STATUS")
+	@Enumerated(EnumType.STRING)
+	private BStatus bstatus;
+	
+	public BStatus getBStatus() {
+		return bstatus;
+	}
+
+	public void setBStatus(BStatus status) {
+		this.bstatus = bstatus;
+	}
+
+	@Column(name = "BOOK_STATUS")
+	@Enumerated(EnumType.STRING)
+	private com.booksworld.dao.Transaction.Status status;
 	
 	@Column(name = "BOOK_IMAGE")
 	private String imagePath;
@@ -42,13 +66,13 @@ public class Book {
 	private User ownerId;
 	
 	@Column(name = "BOOK_CREATED_DATE")
-	private Date createdDate;
+	private String createdDate;
 	
 	@Column(name = "BOOK_DELETED_DATE")
-	private Date deletedDate;
+	private String deletedDate;
 	
 	@Column(name = "BOOK_UPDATED_DATE")
-	private Date updatedDate;
+	private String updatedDate;
 	
 	@Column(name = "BOOK_PAGES")
 	private int pages;
@@ -104,27 +128,37 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public Date getCreatedDate() {
+	
+	
+	public User getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(User ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public Date getDeletedDate() {
+	public String getDeletedDate() {
 		return deletedDate;
 	}
 
-	public void setDeletedDate(Date deletedDate) {
+	public void setDeletedDate(String deletedDate) {
 		this.deletedDate = deletedDate;
 	}
 
-	public Date getUpdatedDate() {
+	public String getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(Date updatedDate) {
+	public void setUpdatedDate(String updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 

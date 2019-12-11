@@ -1,7 +1,5 @@
 package com.booksworld.dao;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 
 @Entity
@@ -32,7 +29,7 @@ public class Transaction {
 	private long borrowerId;
 	
 	@Column(name = "BORROWED_DATE")
-	private Date borrowedDate;
+	private String borrowedDate;
 	
 	@Column(name = "ESTIMATED_RETURN_DATE")
 	private String estimatedReturnDate;
@@ -84,11 +81,11 @@ public class Transaction {
 		this.borrowerId = borrowerId;
 	}
 
-	public Date getBorrowedDate() {
+	public String getBorrowedDate() {
 		return borrowedDate;
 	}
 
-	public void setBorrowedDate(Date borrowedDate) {
+	public void setBorrowedDate(String borrowedDate) {
 		this.borrowedDate = borrowedDate;
 	}
 
@@ -96,9 +93,19 @@ public class Transaction {
 		return estimatedReturnDate;
 	}
 
-	public void setEstimatedReturnDate(String string) {
-		this.estimatedReturnDate = string;
+
+	public void setEstimatedReturnDate(String estimatedReturnDate) {
+		this.estimatedReturnDate = estimatedReturnDate;
 	}
+
+	public String getActualReturnDate() {
+		return actualReturnDate;
+	}
+
+	public void setActualReturnDate(String actualReturnDate) {
+		this.actualReturnDate = actualReturnDate;
+	}
+
 
 	public String getMeetingLocation() {
 		return meetingLocation;
@@ -106,17 +113,7 @@ public class Transaction {
 
 	public void setMeetingLocation(String meetingLocation) {
 		this.meetingLocation = meetingLocation;
-	}
 
-	public String getActualReturnDate() {
-		return actualReturnDate;
 	}
-
-	public void setActualReturnDate(String string) {
-		this.actualReturnDate = string;
-	}
-	
-	
-	
 
 }

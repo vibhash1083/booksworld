@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.booksworld.dao.Book;
+import com.booksworld.dao.Book.BStatus;
 import com.booksworld.dao.Transaction;
 import com.booksworld.dao.Transaction.Status;
 import com.booksworld.repository.TransactionRepository;
@@ -49,7 +50,7 @@ public class TransactionServiceImpl implements TransactionService {
 //			System.out.println(dtf.format(now)); 
 			trans.setActualReturnDate(dtf.format(now));
 			trans.setStatus(Status.AVAILABLE);
-			book.setStatus(Status.AVAILABLE);
+			book.setBStatus(BStatus.AVAILABLE);
 		}
 	}
 	
