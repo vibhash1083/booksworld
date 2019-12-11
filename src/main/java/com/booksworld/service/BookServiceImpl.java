@@ -47,4 +47,17 @@ public class BookServiceImpl implements BookService {
 		bookRepository.save(book);
 		
 	}
+
+	@Override
+	public Book requestBook(Long bookId) {
+		 Optional<Book> optBook = bookRepository.findById(bookId);
+		  return optBook.get();
+		
+	}
+
+	@Override
+	public void lendBook(Long bookId, Long userId) {
+		// TODO Auto-generated method stub
+		
+	}
 }
