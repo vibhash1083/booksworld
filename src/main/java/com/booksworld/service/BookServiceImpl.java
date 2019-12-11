@@ -61,5 +61,11 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public List<Book> searchBookName(String book_name) {
+		List<Book> booksNameSearched = bookRepository.findBybook_name(book_name);
+		return booksNameSearched;
+	}
 
 }
