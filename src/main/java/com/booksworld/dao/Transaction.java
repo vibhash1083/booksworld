@@ -4,10 +4,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+enum Status{
+	AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
+}
 
 @Entity
 @Table(name = "TRANSACTION")
@@ -32,6 +40,15 @@ public class Transaction {
 	
 	@Column(name = "ACTUAL_RETURN_DATE")
 	private Date actualReturnDate;
+
+	@Column(name = "BOOK_STATUS")
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	
+	@ManyToOne
+	@JoinColumn(name = "OWNER_ID", referencedColumnName = "EMP_ID")
+	private User ownerId;
+
 
 	public Long getBookId() {
 		return bookId;

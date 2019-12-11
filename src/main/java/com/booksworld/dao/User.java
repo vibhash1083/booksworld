@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@Column(name="EMP_ID")
+	@Column(name = "EMP_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long empId;
 	
@@ -25,6 +25,8 @@ public class User {
 	@Column(name = "IMAGE")
 	private String image_path;
 	
+	
+
 	public long getEmpId() {
 		return empId;
 	}
