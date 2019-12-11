@@ -19,5 +19,7 @@ public interface BookService {
 	 public Book requestBook(Long bookId);
 	 
 	 public void lendBook(Long bookId, Long userId);
+	 
+	 public List<Book> searchBookName(String book_name);
 
 }

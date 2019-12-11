@@ -60,5 +60,11 @@ public class BookServiceImpl implements BookService {
 	public void lendBook(Long bookId, Long userId) {
 		
 	}
+	
+	@Override
+	public List<Book> searchBookName(String book_name) {
+		List<Book> booksNameSearched = bookRepository.findBybook_name(book_name);
+		return booksNameSearched;
+	}
 
 }
