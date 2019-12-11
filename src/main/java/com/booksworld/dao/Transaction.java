@@ -45,6 +45,22 @@ public class Transaction {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public User getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(User ownerId) {
+		this.ownerId = ownerId;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "OWNER_ID", referencedColumnName = "EMP_ID")
 	private User ownerId;

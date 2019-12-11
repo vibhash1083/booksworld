@@ -3,6 +3,8 @@ package com.booksworld.dao;
 import com.booksworld.dao.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
+
+enum Status{
+	AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
+}
 
 @Entity
 @Table(name = "BOOK")
@@ -55,6 +61,18 @@ public class Book {
 	
 	@Column(name = "BOOK_DAYS")
 	private int days;
+	
+	@Column(name = "BOOK_STATUS")
+	@Enumerated(EnumType.STRING)
+	private Status status;
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 
 	public Long getBookId() {
 		return bookId;

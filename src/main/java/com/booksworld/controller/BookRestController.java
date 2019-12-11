@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booksworld.dao.Book;
+import com.booksworld.dao.Transaction;
 import com.booksworld.service.BookService;
 
 @RestController
@@ -60,14 +61,27 @@ public class BookRestController {
 	@PutMapping("/api/book/request/{bookId}/{userId}")
 	public Book requestBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId,@PathVariable(name = "userId") Long userId) {
 		Book existing_book = bookService.getBook(bookId);
+		Transaction trans_book = new Transaction();
 		if (existing_book != null) {
-			return existing_book;
+			if(existing_book.getStatus().equals("Available")) {
+				trans_book.setBookId(bookId);
+				trans_book.setOwnerId(ownerId);
+				trans_book.setStatus("REQUESTED");
+			}
 		}
 		return existing_book;
 	}
 	@PutMapping("/api/book/lend/{bookId}/{userId}")
 	public void lendBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId,@PathVariable(name = "userId") Long userId) {
 		Book existing_book = bookService.getBook(bookId);
-		
+		Transaction trans_book = new Transaction();
+		if (existing_book != null) {
+			if(existing_book.getStatus().equals("AVAILABLE") ||existing_book.getStatus().equals("INITIATE_REQUEST") ) {
+				trans_book.setBookId(bookId);
+				trans_book.setOwnerId(userId);
+				trans_book.setStatus("LENDED");
+			}
+		}
+		return existing_book;
 	}
 }
