@@ -83,11 +83,16 @@ public class TransactionServiceImpl implements TransactionService {
 	@Override
 	public void returnBook(Book book, Transaction trans, Long bookId) {
 		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {
-//			
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-			LocalDateTime now = LocalDateTime.now();  
-//			System.out.println(dtf.format(now)); 
+			long months = book.getDays()/30;
+			long days = book.getDays()%30;
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
+			LocalDateTime now = LocalDateTime.now().plusDays(days).plusMonths(months);
+			System.out.println("+++++++++++++++++++"+dtf.format(now));
+//			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+//			LocalDateTime now = LocalDateTime.now();  
+//			System.out.println("+++++++++++++++++++"+dtf.format(now.plusMonths(1)));
 			trans.setActualReturnDate(dtf.format(now));
+			
 			trans.setStatus(Status.AVAILABLE);
 			book.setBStatus(BStatus.AVAILABLE);
 		}

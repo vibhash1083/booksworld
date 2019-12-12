@@ -126,8 +126,6 @@ public class Book implements Serializable{
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-
-	
 	
 	public User getOwnerId() {
 		return ownerId;
