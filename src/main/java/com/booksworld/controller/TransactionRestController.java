@@ -28,7 +28,7 @@ public class TransactionRestController {
 		this.transactionService = transactionService;
 	}
 	
-	@GetMapping("/api/trans")
+	@GetMapping("/api/transaction")
 	public List<Transaction> Transactions() {
 		List<Transaction> trans = transactionService.retrieveTransaction();
 		return trans;
