@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import java.io.Serializable;
 import java.util.Date;
 
 
 @Entity
 @Table(name = "BOOK")
-public class Book {
+public class Book implements Serializable{
 	
 	public enum BStatus{
 		AVAILABLE,LENT
@@ -44,13 +46,13 @@ public class Book {
 		return bstatus;
 	}
 
-	public void setBStatus(BStatus status) {
+	public void setBStatus(BStatus bstatus) {
 		this.bstatus = bstatus;
 	}
 
-	@Column(name = "BOOK_STATUS")
-	@Enumerated(EnumType.STRING)
-	private com.booksworld.dao.Transaction.Status status;
+//	@Column(name = "BOOK_STATUS")
+//	@Enumerated(EnumType.STRING)
+//	private com.booksworld.dao.Transaction.Status status;
 	
 	@Column(name = "BOOK_IMAGE")
 	private String imagePath;

@@ -21,56 +21,57 @@ import com.booksworld.service.TransactionService;
 @RestController
 public class TransactionRestController {
 	
-	private TransactionService transactionService1;
+	private TransactionService transactionService;
 	private BookService bookService;
 
 	public void setTransactionService(TransactionService transactionService) {
-		this.transactionService1 = transactionService;
+		this.transactionService = transactionService;
 	}
 	
+	@GetMapping("/api/trans")
+	public List<Transaction> Transactions() {
+		List<Transaction> trans = transactionService.retrieveTransaction();
+		return trans;
+	}
+
+	@GetMapping("/api/trans/{transId}")
+	public Transaction getTrans(@PathVariable(name = "transId") Long transId) {
+		return transactionService.getTransaction(transId);
+	}
+	
+	@PostMapping(path = "/api/trans", consumes = "application/json", produces = "application/json")
+	public void saveTrans(@RequestBody Transaction trans) {
+		transactionService.saveTransaction(trans);
+		System.out.println("Transaction Saved Successfully");
+	}
 	
 	@PutMapping("/api/book/request/{bookId}/{userId}")
 	public Book requestBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId,@PathVariable(name = "userId") Long userId) {
 		Book existing_book = bookService.getBook(bookId);
-		Transaction trans_book = new Transaction();
 		if (existing_book != null) {
-			if(existing_book.getBStatus().equals("Available")) {
-				trans_book.setBookId(bookId);
-				trans_book.setOwnerId(userId);
-				trans_book.setStatus(Status.AVAILABLE);
-			}
+			transactionService.requestBook(existing_book, bookId, userId);
+			System.out.println("Book is Requested");
 		}
-		transactionService1.saveTransaction(trans_book);
 		return existing_book;
 	}
 	@PutMapping("/api/book/lend/{bookId}/{userId}")
 	public void lendBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId,@PathVariable(name = "userId") Long userId) {
 		Book existing_book = bookService.getBook(bookId);
-		Transaction trans_book = new Transaction();
 		if (existing_book != null) {
-			if(existing_book.getBStatus().toString().equals("AVAILABLE") ||existing_book.getBStatus().toString().equals("INITIATE_REQUEST") ) {
-				trans_book.setBookId(bookId);
-				trans_book.setOwnerId(userId);
-				trans_book.setStatus(Status.AVAILABLE);
-				existing_book.setBStatus(BStatus.AVAILABLE);
-			}
+			transactionService.lendBook(existing_book, bookId, userId);
+			System.out.println("Book is issued to you ");
 		}
-		
-		bookService.saveBook(existing_book);
-		transactionService1.saveTransaction(trans_book);
-
 	}
 
-	@Autowired
-	private TransactionService transactionService;
 	
 	@PutMapping("/api/book/initiateReturn/{bookId}")
 	public Transaction initiateReturnBook(@RequestBody Transaction trans, @PathVariable(name = "bookId") Long bookId) {
 		Book book = new Book();
-		Transaction existing_trans = transactionService1.getTransaction(bookId);
+		Transaction existing_trans = transactionService.getTransaction(bookId);
 		if (existing_trans != null) {
 			trans.setBookId(existing_trans.getBookId());
-			transactionService1.initiateReturnBook(book, trans, bookId);
+			transactionService.initiateReturnBook(book, trans, bookId);
+			System.out.println("Now you can return the book");
 		}
 		return existing_trans;
 	}
@@ -78,10 +79,11 @@ public class TransactionRestController {
 	@PutMapping("/api/book/return/{bookId}")
 	public Transaction returnBook(@RequestBody Transaction trans, @PathVariable(name = "bookId") Long bookId) {
 		Book book = new Book();
-		Transaction existing_trans = transactionService1.getTransaction(bookId);
+		Transaction existing_trans = transactionService.getTransaction(bookId);
 		if (existing_trans != null) {
 			trans.setBookId(existing_trans.getBookId());
-			transactionService1.returnBook(book, trans, bookId);
+			transactionService.returnBook(book, trans, bookId);
+			System.out.println("Book Returned Successfully");
 		}
 		return existing_trans;
 	}

@@ -14,11 +14,13 @@ public interface TransactionService {
 
 	public void initiateReturnBook(Book book, Transaction trans, Long bookId);
 
-	
+	public void lendBook(Book existing_book, Long bookId, Long userId);
 
 	public void saveTransaction(Transaction trans);
 
 	public void requestBook(Book existing_book, Long bookId, Long userId);
+
+	public List<Transaction> retrieveTransaction();
 	
 }
 

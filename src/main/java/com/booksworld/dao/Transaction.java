@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -17,13 +18,17 @@ import javax.persistence.Table;
 public class Transaction {
 	
 	public enum Status{
-		AVAILABLE,REQUESTED,INITIATE_REQUEST,LENDED
+		AVAILABLE,REQUESTED,INITIATE_REQUEST,LENT
 	}
 	
 	@Id
-	@Column(name = "BOOK_ID")
+	@Column(name = "TRANS_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bookId;
+	private Long transId;
+	
+	@OneToOne
+	@JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
+	private Book bookId;
 	
 	@Column(name = "BORROWER_ID")
 	private long borrowerId;
@@ -49,7 +54,7 @@ public class Transaction {
 	private User ownerId;
 
 
-	public Long getBookId() {
+	public Book getBookId() {
 		return bookId;
 	}
 
@@ -69,8 +74,16 @@ public class Transaction {
 		this.ownerId = ownerId;
 	}
 
-	public void setBookId(Long bookId) {
+	public void setBookId(Book bookId) {
 		this.bookId = bookId;
+	}
+
+	public Long getTransId() {
+		return transId;
+	}
+
+	public void setTransId(Long transId) {
+		this.transId = transId;
 	}
 
 	public long getBorrowerId() {
