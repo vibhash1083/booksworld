@@ -57,4 +57,13 @@ public class BookRestController {
 			bookService.updateBook(book);
 		}
 	}
+	
+	@PutMapping("api/book/return_book/{book_id}")
+	public void returnBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId) {
+		Book return_book = bookService.getBook(bookId);
+		if (return_book != null) {
+			// TODO set the book status 
+			bookService.returnBook(book);
+		}
+	}
 }

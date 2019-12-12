@@ -17,7 +17,7 @@ public class BookServiceImpl implements BookService {
 
 	public void setBookRepository(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
-	}
+	}	
 
 	@Override
 	public List<Book> retrieveBooks() {
@@ -45,6 +45,20 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void updateBook(Book book) {
 		bookRepository.save(book);
+		
+	}
+
+	@Override
+	public Book requestBook(Long bookId) {
+		 Optional<Book> optBook = bookRepository.findById(bookId);
+		  return optBook.get();
+		
+	}
+
+	@Override
+	public void lendBook(Long bookId, Long userId) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override
