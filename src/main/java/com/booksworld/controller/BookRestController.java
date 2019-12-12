@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booksworld.dao.Book;
+import com.booksworld.dao.Transaction;
+
 import com.booksworld.service.BookService;
 
 @RestController
@@ -58,12 +60,10 @@ public class BookRestController {
 		}
 	}
 	
-	@PutMapping("api/book/return_book/{book_id}")
-	public void returnBook(@RequestBody Book book, @PathVariable(name = "bookId") Long bookId) {
-		Book return_book = bookService.getBook(bookId);
-		if (return_book != null) {
-			// TODO set the book status 
-			bookService.returnBook(book);
-		}
+	@GetMapping("/api/search/{bookName}")
+	public List<Book> nameSearched(@PathVariable(name = "bookName") String bookName) {
+		List<Book> books = bookService.searchBookName(bookName );
+		return books;
 	}
+	
 }

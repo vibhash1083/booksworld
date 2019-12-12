@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.booksworld.dao.Book;
+import com.booksworld.dao.Transaction;
 import com.booksworld.repository.BookRepository;
 
 @Service
@@ -17,7 +18,7 @@ public class BookServiceImpl implements BookService {
 
 	public void setBookRepository(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
-	}	
+	}
 
 	@Override
 	public List<Book> retrieveBooks() {
@@ -57,12 +58,13 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void lendBook(Long bookId, Long userId) {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
-	public void returnBook(Book book) {
-		
+	public List<Book> searchBookName(String book_name) {
+		List<Book> booksNameSearched = bookRepository.findBybook_name(book_name);
+		return booksNameSearched;
 	}
+
 }
