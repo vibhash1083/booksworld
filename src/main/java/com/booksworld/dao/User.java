@@ -12,8 +12,11 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@Column(name = "EMP_ID")
+	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long userId;
+	
+	@Column(name = "EMP_ID")
 	private long empId;
 	
 	@Column(name = "USER_NAME")
@@ -25,6 +28,21 @@ public class User {
 	@Column(name = "IMAGE")
 	private String image_path;
 	
+	public String getImage_path() {
+		return image_path;
+	}
+
+	public void setImage_path(String image_path) {
+		this.image_path = image_path;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 	
 
 	public long getEmpId() {
@@ -51,12 +69,10 @@ public class User {
 		this.location = location;
 	}
 
-	public String getImage_path() {
-		return image_path;
-	}
-
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
-	}
-
+	/*
+	 * public String getImage_path() { return image_path; }
+	 * 
+	 * public void setImage_path(String image_path) { this.image_path = image_path;
+	 * }
+	 */
 }

@@ -44,13 +44,13 @@ public class Book {
 		return bstatus;
 	}
 
-	public void setBStatus(BStatus status) {
+	public void setBStatus(BStatus bstatus) {
 		this.bstatus = bstatus;
 	}
 
-	@Column(name = "BOOK_STATUS")
-	@Enumerated(EnumType.STRING)
-	private com.booksworld.dao.Transaction.Status status;
+//	@Column(name = "BOOK_STATUS")
+//	@Enumerated(EnumType.STRING)
+//	private com.booksworld.dao.Transaction.Status status;
 	
 	@Column(name = "BOOK_IMAGE")
 	private String imagePath;
