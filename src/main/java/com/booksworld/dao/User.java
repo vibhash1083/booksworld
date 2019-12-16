@@ -11,52 +11,73 @@ import javax.persistence.Table;
 @Table(name = "USER")
 public class User {
 	
+
 	@Id
 	@Column(name = "EMP_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long empId;
+	private long empID;
 	
 	@Column(name = "USER_NAME")
-	private String name;
+	private String userName;
 	
 	@Column(name = "USER_LOCATION")
-	private String location;
+	private String userLocation;
 	
 	@Column(name = "IMAGE")
-	private String image_path;
+	private String image;
 	
+	@Column(name = "EMAIL_ID")
+	private String emailId;
 	
+	@Column(name = "PASSWORD")
+	private String password;
 
-	public long getEmpId() {
-		return empId;
+	public long getEmpID() {
+		return empID;
 	}
 
-	public void setEmpId(long empId) {
-		this.empId = empId;
+	public void setEmpID(long empID) {
+		this.empID = empID;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getUserLocation() {
+		return userLocation;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setUserLocation(String userLocation) {
+		this.userLocation = userLocation;
 	}
 
-	public String getImage_path() {
-		return image_path;
+	public String getImage() {
+		return image;
 	}
 
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
