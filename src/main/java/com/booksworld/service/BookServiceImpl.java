@@ -1,5 +1,7 @@
 package com.booksworld.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +30,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void saveBook(Book book) {
-		  bookRepository.save(book);
+		bookRepository.save(book);
 
 	}
 
@@ -46,19 +48,6 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void updateBook(Book book) {
 		bookRepository.save(book);
-		
-	}
-
-	@Override
-	public Book requestBook(Long bookId) {
-		 Optional<Book> optBook = bookRepository.findById(bookId);
-		  return optBook.get();
-		
-	}
-
-	@Override
-	public void lendBook(Long bookId, Long userId) {
-		// TODO Auto-generated method stub
 		
 	}
 	

@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class User {
+public class User{
 	
 
 	@Id
-	@Column(name = "EMP_ID")
+	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long empID;
+	private long empId;
 	
 	@Column(name = "USER_NAME")
 	private String userName;
@@ -32,12 +32,12 @@ public class User {
 	@Column(name = "PASSWORD")
 	private String password;
 
-	public long getEmpID() {
-		return empID;
+	public long getEmpId() {
+		return empId;
 	}
 
-	public void setEmpID(long empID) {
-		this.empID = empID;
+	public void setEmpID(long empId) {
+		this.empId = empId;
 	}
 
 	public String getUserName() {
@@ -79,5 +79,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 }

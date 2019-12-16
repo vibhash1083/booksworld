@@ -1,5 +1,6 @@
 package com.booksworld.dao;
 
+
 import com.booksworld.dao.Category;
 import com.booksworld.dao.User;
 
@@ -24,8 +25,8 @@ enum Status{
 
 @Entity
 @Table(name = "BOOK")
-public class Book {
-	
+public class Book{
+
 	@Id
 	@Column(name = "BOOK_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +38,7 @@ public class Book {
 	@Column(name = "BOOK_AUTHOR")
 	private String bookAuthor;
 	
+
 	@Column(name = "BOOK_IMAGE")
 	private String bookImage;
 	
@@ -107,6 +109,14 @@ public class Book {
 		this.bookStatus = bookStatus;
 	}
 
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	public User getUserId() {
 		return userId;
 	}
@@ -122,14 +132,4 @@ public class Book {
 	public void setCategoryId(Category categoryId) {
 		this.categoryId = categoryId;
 	}
-	
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 }
-

@@ -19,11 +19,12 @@ import javax.persistence.TemporalType;
 @Table(name = "Transaction")
 public class Transaction {
 	
+
 	@Id
 	@Column(name = "TRANSACTION_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transactionId;
-	
+
 	@OneToOne
 	@JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
 	private Book bookId;
@@ -74,13 +75,11 @@ public class Transaction {
 		return bookId;
 	}
 
+
 	public void setBookId(Book bookId) {
 		this.bookId = bookId;
 	}
 
-	public String getEmpName() {
-		return empName;
-	}
 
 	public void setEmpName(String empName) {
 		this.empName = empName;
@@ -98,9 +97,7 @@ public class Transaction {
 		return empID;
 	}
 
-	public void setEmpID(String empID) {
-		this.empID = empID;
-	}
+
 
 	public String getEmpLocation() {
 		return empLocation;
@@ -109,7 +106,6 @@ public class Transaction {
 	public void setEmpLocation(String empLocation) {
 		this.empLocation = empLocation;
 	}
-
 	public Date getPickupDate() {
 		return pickupDate;
 	}
@@ -125,6 +121,7 @@ public class Transaction {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
 
 	public String getPickupLocation() {
 		return pickupLocation;
@@ -157,5 +154,15 @@ public class Transaction {
 	public void setBookStatus(Book bookStatus) {
 		this.bookStatus = bookStatus;
 	}
-	
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpID(String empID) {
+		this.empID = empID;
+	}
+
+
 }
+
