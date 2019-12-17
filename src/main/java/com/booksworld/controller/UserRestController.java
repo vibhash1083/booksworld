@@ -52,7 +52,7 @@ public class UserRestController {
 	public void updateUser(@RequestBody User user, @PathVariable(name = "userId") Long userId) {
 		User existing_user = userService.getUser(userId);
 		if (existing_user != null) {
-			user.setEmpId(existing_user.getEmpId());
+			user.setUserId(existing_user.getUserId());
 			userService.updateUser(user);
 		}
 	}

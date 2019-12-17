@@ -1,9 +1,11 @@
 package com.booksworld.dao;
 
+import com.booksworld.dao.Book;
+
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,122 +13,149 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "TRANSACTION")
+@Table(name = "Transaction")
 public class Transaction {
 	
-	public enum Status{
-		AVAILABLE,REQUESTED,INITIATE_REQUEST,LENT
-	}
-	
+
 	@Id
-	@Column(name = "TRANS_ID")
+	@Column(name = "TRANSACTION_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long transId;
-	
-	@OneToOne
+	private long transactionId;
+
+	@ManyToOne
 	@JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
 	private Book bookId;
 	
-	@Column(name = "BORROWER_ID")
-	private long borrowerId;
+	@Column(name = "EMP_NAME")
+	private String empName;
 	
-	@Column(name = "BORROWED_DATE")
-	private String borrowedDate;
+	@Column(name = "EMP_EMAIL")
+	private String empEmail;
+	
+	@Column(name = "EMP_ID")
+	private String empID;
+	
+	@Column(name = "EMP_LOCATION")
+	private String empLocation;
+	
+	@Column(name = "PICKUP_DATE")
+	@Temporal(TemporalType.DATE)
+	private Date pickupDate;
+	
+	@Column(name = "MESSAGE", columnDefinition="TEXT")
+	private String message;
+	
+	@Column(name = "PICKUP_LOCATION")
+	private String pickupLocation;
 	
 	@Column(name = "ESTIMATED_RETURN_DATE")
-	private String estimatedReturnDate;
-	
-	@Column(name = "MEETING_LOCATION")
-	private String meetingLocation;
-	
-	@Column(name = "ACTUAL_RETURN_DATE")
-	private String actualReturnDate;
-
-	@Column(name = "BOOK_STATUS")
-	@Enumerated(EnumType.STRING)
-	private Status status;
+	@Temporal(TemporalType.DATE)
+	private Date estimatedReturnDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "OWNER_ID", referencedColumnName = "EMP_ID")
-	private User ownerId;
+	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+	private Book userId;
+	
+	@ManyToOne
+	@JoinColumn(name = "BOOK_STATUS", referencedColumnName = "BOOK_STATUS")
+	private Book bookStatus;
 
+	public long getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(long transactionId) {
+		this.transactionId = transactionId;
+	}
 
 	public Book getBookId() {
 		return bookId;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public User getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(User ownerId) {
-		this.ownerId = ownerId;
-	}
 
 	public void setBookId(Book bookId) {
 		this.bookId = bookId;
 	}
 
-	public Long getTransId() {
-		return transId;
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
-	public void setTransId(Long transId) {
-		this.transId = transId;
+	public String getEmpEmail() {
+		return empEmail;
 	}
 
-	public long getBorrowerId() {
-		return borrowerId;
+	public void setEmpEmail(String empEmail) {
+		this.empEmail = empEmail;
 	}
 
-	public void setBorrowerId(long borrowerId) {
-		this.borrowerId = borrowerId;
+	public String getEmpID() {
+		return empID;
 	}
 
-	public String getBorrowedDate() {
-		return borrowedDate;
+
+
+	public String getEmpLocation() {
+		return empLocation;
 	}
 
-	public void setBorrowedDate(String borrowedDate) {
-		this.borrowedDate = borrowedDate;
+	public void setEmpLocation(String empLocation) {
+		this.empLocation = empLocation;
+	}
+	public Date getPickupDate() {
+		return pickupDate;
 	}
 
-	public String getEstimatedReturnDate() {
+	public void setPickupDate(Date pickupDate) {
+		this.pickupDate = pickupDate;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
+	public String getPickupLocation() {
+		return pickupLocation;
+	}
+
+	public void setPickupLocation(String pickupLocation) {
+		this.pickupLocation = pickupLocation;
+	}
+
+	public Date getEstimatedReturnDate() {
 		return estimatedReturnDate;
 	}
 
-
-	public void setEstimatedReturnDate(String estimatedReturnDate) {
+	public void setEstimatedReturnDate(Date estimatedReturnDate) {
 		this.estimatedReturnDate = estimatedReturnDate;
 	}
 
-	public String getActualReturnDate() {
-		return actualReturnDate;
+	public Book getUserId() {
+		return userId;
 	}
 
-	public void setActualReturnDate(String actualReturnDate) {
-		this.actualReturnDate = actualReturnDate;
+	public void setUserId(Book userId) {
+		this.userId = userId;
 	}
 
-
-	public String getMeetingLocation() {
-		return meetingLocation;
+	public Book getBookStatus() {
+		return bookStatus;
 	}
 
-	public void setMeetingLocation(String meetingLocation) {
-		this.meetingLocation = meetingLocation;
-
+	public void setBookStatus(Book bookStatus) {
+		this.bookStatus = bookStatus;
 	}
+
 
 }
+

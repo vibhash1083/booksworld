@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booksworld.dao.Transaction;
-import com.booksworld.dao.Transaction.Status;
 import com.booksworld.dao.Book;
-import com.booksworld.dao.Book.BStatus;
+import com.booksworld.dao.Book.Status;
 import com.booksworld.service.BookService;
 import com.booksworld.service.TransactionService;
 

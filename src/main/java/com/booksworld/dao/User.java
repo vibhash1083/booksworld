@@ -1,7 +1,5 @@
 package com.booksworld.dao;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,32 +9,30 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class User implements Serializable{
+public class User{
 	
+
 	@Id
 	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long userId;
 	
-	@Column(name = "EMP_ID")
-	private long empId;
-	
 	@Column(name = "USER_NAME")
-	private String name;
+	private String userName;
 	
 	@Column(name = "USER_LOCATION")
-	private String location;
+	private String userLocation;
 	
 	@Column(name = "IMAGE")
-	private String image_path;
+	private String image;
 	
-	public String getImage_path() {
-		return image_path;
-	}
+	@Column(name = "EMAIL_ID")
+	private String emailId;
+	
+	@Column(name = "PASSWORD")
+	private String password;
 
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
-	}
+	
 
 	public long getUserId() {
 		return userId;
@@ -45,36 +41,46 @@ public class User implements Serializable{
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	
 
-	public long getEmpId() {
-		return empId;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setEmpId(long empId) {
-		this.empId = empId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserLocation() {
+		return userLocation;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserLocation(String userLocation) {
+		this.userLocation = userLocation;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getImage() {
+		return image;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
-	/*
-	 * public String getImage_path() { return image_path; }
-	 * 
-	 * public void setImage_path(String image_path) { this.image_path = image_path;
-	 * }
-	 */
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 }

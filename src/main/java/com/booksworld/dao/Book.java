@@ -1,6 +1,10 @@
 package com.booksworld.dao;
 
-import java.io.Serializable;
+
+import com.booksworld.dao.Category;
+import com.booksworld.dao.User;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,168 +15,123 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
 @Table(name = "BOOK")
-public class Book implements Serializable{
+public class Book{
 	
-	public enum BStatus{
-		AVAILABLE,LENT
+	public enum Status{
+		AVAILABLE,REQUESTED,REQUEST_ACCEPTED,BOOKED,DISABLED
 	}
-	
 
 	@Id
 	@Column(name = "BOOK_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long bookId;
+	private long bookId;
 
 	@Column(name = "BOOK_NAME")
-	private String name;
+	private String bookName;
 
 	@Column(name = "BOOK_AUTHOR")
-	private String author;
+	private String bookAuthor;
+	
+
+	@Column(name = "BOOK_IMAGE")
+	private String bookImage;
+	
+	@Column(name = "BOOK_DESCRIPTION", columnDefinition="TEXT")
+	private String bookDescription;
 	
 	@Column(name = "BOOK_STATUS")
 	@Enumerated(EnumType.STRING)
-	private BStatus bstatus;
+	private Status bookStatus;
 	
-	public BStatus getBStatus() {
-		return bstatus;
-	}
+	@Column(name = "CREATED_DATE")
+	@Temporal(TemporalType.DATE)
+    private Date createdDate;
 
-	public void setBStatus(BStatus bstatus) {
-		this.bstatus = bstatus;
-	}
-
-//	@Column(name = "BOOK_STATUS")
-//	@Enumerated(EnumType.STRING)
-//	private com.booksworld.dao.Transaction.Status status;
-	
-	@Column(name = "BOOK_IMAGE")
-	private String imagePath;
-	
-	@Column(name = "BOOK_LANGUAGE")
-	private String language;
-	
-	@Column(name = "BOOK_GENRE")
-	private String genre;
+	@ManyToOne
+	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+	private User userId;
 	
 	@ManyToOne
-	@JoinColumn(name = "OWNER_ID", referencedColumnName = "EMP_ID")
-	private User ownerId;
-	
-	@Column(name = "BOOK_CREATED_DATE")
-	private String createdDate;
-	
-	@Column(name = "BOOK_DELETED_DATE")
-	private String deletedDate;
-	
-	@Column(name = "BOOK_UPDATED_DATE")
-	private String updatedDate;
-	
-	@Column(name = "BOOK_PAGES")
-	private int pages;
-	
-	@Column(name = "BOOK_DAYS")
-	private int days;
+	@JoinColumn(name = "CATEGORY_ID",referencedColumnName = "CATEGORY_ID")
+	private Category categoryId;
 
-	public Long getBookId() {
+	public long getBookId() {
 		return bookId;
 	}
 
-	public void setBookId(Long bookId) {
+	public void setBookId(long bookId) {
 		this.bookId = bookId;
 	}
 
-	public String getName() {
-		return name;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
-	public String getAuthor() {
-		return author;
+	public String getBookAuthor() {
+		return bookAuthor;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public String getBookImage() {
+		return bookImage;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setBookImage(String bookImage) {
+		this.bookImage = bookImage;
 	}
 
-	public String getLanguage() {
-		return language;
+	public String getBookDescription() {
+		return bookDescription;
 	}
 
-	public void setLanguage(String language) {
-		this.language = language;
+	public void setBookDescription(String bookDescription) {
+		this.bookDescription = bookDescription;
 	}
 
-	public String getGenre() {
-		return genre;
+	public Status getBookStatus() {
+		return bookStatus;
 	}
 
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-	
-	public User getOwnerId() {
-		return ownerId;
+	public void setBookStatus(Status bookStatus) {
+		this.bookStatus = bookStatus;
 	}
 
-	public void setOwnerId(User ownerId) {
-		this.ownerId = ownerId;
-	}
-
-	public String getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public String getDeletedDate() {
-		return deletedDate;
+	public User getUserId() {
+		return userId;
 	}
 
-	public void setDeletedDate(String deletedDate) {
-		this.deletedDate = deletedDate;
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
-	public String getUpdatedDate() {
-		return updatedDate;
+	public Category getCategoryId() {
+		return categoryId;
 	}
 
-	public void setUpdatedDate(String updatedDate) {
-		this.updatedDate = updatedDate;
+	public void setCategoryId(Category categoryId) {
+		this.categoryId = categoryId;
 	}
-
-	public int getPages() {
-		return pages;
-	}
-
-	public void setPages(int pages) {
-		this.pages = pages;
-	}
-
-	public int getDays() {
-		return days;
-	}
-
-	public void setDays(int days) {
-		this.days = days;
-	}	
-
 }
