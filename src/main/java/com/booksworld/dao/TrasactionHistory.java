@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,11 +23,11 @@ public class TrasactionHistory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long transactionHistoryId;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "TRANSACTION_ID", referencedColumnName = "TRANSACTION_ID")
-	private Book transactionId;
+	private Transaction transactionId;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "BOOK_STATUS", referencedColumnName = "BOOK_STATUS")
 	private Book bookStatus;
 	
@@ -42,12 +43,17 @@ public class TrasactionHistory {
 		this.transactionHistoryId = transactionHistoryId;
 	}
 
-	public Book getTransactionId() {
+
+	public Transaction getTransactionId() {
 		return transactionId;
 	}
 
-	public void setTransactionId(Book transactionId) {
+	public void setTransactionId(Transaction transactionId) {
 		this.transactionId = transactionId;
+	}
+
+	public void setTransactionHistoryId(long transactionHistoryId) {
+		this.transactionHistoryId = transactionHistoryId;
 	}
 
 	public Book getBookStatus() {

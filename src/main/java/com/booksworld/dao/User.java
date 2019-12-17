@@ -15,7 +15,7 @@ public class User{
 	@Id
 	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long empId;
+	private long userId;
 	
 	@Column(name = "USER_NAME")
 	private String userName;
@@ -32,12 +32,14 @@ public class User{
 	@Column(name = "PASSWORD")
 	private String password;
 
-	public long getEmpId() {
-		return empId;
+	
+
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setEmpID(long empId) {
-		this.empId = empId;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {

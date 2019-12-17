@@ -15,17 +15,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-enum Status{
-	AVAILABLE,REQUESTED,REQUEST_ACCEPTED,BOOKED,DISABLED
-}
 
 @Entity
 @Table(name = "BOOK")
 public class Book{
+	
+	public enum Status{
+		AVAILABLE,REQUESTED,REQUEST_ACCEPTED,BOOKED,DISABLED
+	}
 
 	@Id
 	@Column(name = "BOOK_ID")
@@ -54,7 +56,7 @@ public class Book{
     private Date createdDate;
 
 	@ManyToOne
-	@JoinColumn(name = "USER_ID", referencedColumnName = "EMP_ID")
+	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
 	private User userId;
 	
 	@ManyToOne

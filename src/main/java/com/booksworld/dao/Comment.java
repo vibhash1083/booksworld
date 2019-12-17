@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,12 +20,12 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long commentId;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "BOOK_ID", referencedColumnName = "BOOK_ID")
 	private Book bookId;
 	
-	@OneToOne
-	@JoinColumn(name = "USER_ID", referencedColumnName = "EMP_ID")
+	@ManyToOne
+	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
 	private Book userId;
 	
 	@Column(name = "COMMENT", columnDefinition="TEXT")

@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.booksworld.dao.Book;
-import com.booksworld.dao.Book.BStatus;
+import com.booksworld.dao.Book.Status;
 import com.booksworld.dao.Transaction;
-import com.booksworld.dao.Transaction.Status;
 import com.booksworld.dao.User;
 import com.booksworld.repository.TransactionRepository;
 
@@ -33,16 +32,15 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	@Override
 	public void initiateReturnBook(Book book, Transaction trans, Long bookId) {
-		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {
-//			
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-			LocalDateTime now = LocalDateTime.now();  
-			System.out.println(dtf.format(now)); 
-//			DateUtils.add(now, 30);
-			trans.setEstimatedReturnDate(dtf.format(now));
-			trans.setStatus(Status.INITIATE_REQUEST);
-//			book.setStatus(Status.AVAILABLE);
-		}
+//		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {		
+//			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+//			LocalDateTime now = LocalDateTime.now();  
+//			System.out.println(dtf.format(now)); 
+////			DateUtils.add(now, 30);
+//			trans.setEstimatedReturnDate(dtf.format(now));
+//			trans.setStatus(Status.INITIATE_REQUEST);
+////			book.setStatus(Status.AVAILABLE);
+//		}
 		
 	}
 
@@ -58,11 +56,11 @@ public class TransactionServiceImpl implements TransactionService {
 	public void requestBook(Book existing_book, Long bookId, Long userId) {
 		Transaction trans_book = new Transaction();
 		User user = userService.getUser(userId);
-		if(existing_book.getBStatus().equals("Available")) {
-			trans_book.setBookId(existing_book);
-			trans_book.setOwnerId(user);
-			trans_book.setStatus(Status.REQUESTED);
-		}
+//		if(existing_book.getBStatus().equals("Available")) {
+//			trans_book.setBookId(existing_book);
+//			trans_book.setOwnerId(user);
+//			trans_book.setStatus(Status.REQUESTED);
+//		}
 		
 	}
 	
@@ -70,32 +68,32 @@ public class TransactionServiceImpl implements TransactionService {
 	public void lendBook(Book existing_book, Long bookId, Long userId) {
 		Transaction trans_book = new Transaction();
 		User user = userService.getUser(userId);
-		if (existing_book != null) {
-			if(existing_book.getBStatus().toString().equals("AVAILABLE") ||existing_book.getBStatus().toString().equals("INITIATE_REQUEST") ) {
-				trans_book.setBookId(existing_book);
-				trans_book.setOwnerId(user);
-				trans_book.setStatus(Status.LENT);
-				existing_book.setBStatus(BStatus.LENT);
-			}
-	}
+//		if (existing_book != null) {
+//			if(existing_book.getBStatus().toString().equals("AVAILABLE") ||existing_book.getBStatus().toString().equals("INITIATE_REQUEST") ) {
+//				trans_book.setBookId(existing_book);
+//				trans_book.setOwnerId(user);
+//				trans_book.setStatus(Status.LENT);
+//				existing_book.setBStatus(BStatus.LENT);
+//			}
+//	}
 	}
 	
 	@Override
 	public void returnBook(Book book, Transaction trans, Long bookId) {
-		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {
-			long months = book.getDays()/30;
-			long days = book.getDays()%30;
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
-			LocalDateTime now = LocalDateTime.now().plusDays(days).plusMonths(months);
-			System.out.println("+++++++++++++++++++"+dtf.format(now));
-//			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-//			LocalDateTime now = LocalDateTime.now();  
-//			System.out.println("+++++++++++++++++++"+dtf.format(now.plusMonths(1)));
-			trans.setActualReturnDate(dtf.format(now));
-			
-			trans.setStatus(Status.AVAILABLE);
-			book.setBStatus(BStatus.AVAILABLE);
-		}
+//		if(trans.getStatus().toString().equals("INITIATE_REQUEST") ) {
+//			long months = book.getDays()/30;
+//			long days = book.getDays()%30;
+//			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
+//			LocalDateTime now = LocalDateTime.now().plusDays(days).plusMonths(months);
+//			System.out.println("+++++++++++++++++++"+dtf.format(now));
+////			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+////			LocalDateTime now = LocalDateTime.now();  
+////			System.out.println("+++++++++++++++++++"+dtf.format(now.plusMonths(1)));
+//			trans.setActualReturnDate(dtf.format(now));
+//			
+//			trans.setStatus(Status.AVAILABLE);
+//			book.setBStatus(BStatus.AVAILABLE);
+//		}
 	}
 
 

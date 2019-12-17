@@ -39,8 +39,8 @@ public class BookRestController {
 	
 	@PostMapping(path = "/api/book", consumes = "application/json", produces = "application/json")
 	public void saveBook(@RequestBody Book book) {
-		System.out.println(book.getName());
-		System.out.println(book.getAuthor());
+		System.out.println(book.getBookName());
+		System.out.println(book.getBookAuthor());
 		bookService.saveBook(book);
 		System.out.println("Book Saved Successfully");
 	}
