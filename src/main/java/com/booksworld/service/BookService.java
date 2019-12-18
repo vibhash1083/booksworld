@@ -3,7 +3,7 @@ package com.booksworld.service;
 import java.util.List;
 
 import com.booksworld.dao.Book;
-import com.booksworld.dao.Transaction;
+
 
 public interface BookService {
 	 public List<Book> retrieveBooks();

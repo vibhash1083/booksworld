@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.booksworld.dao.Book;
 import com.booksworld.dao.User;
 import com.booksworld.repository.UserRepository;
 

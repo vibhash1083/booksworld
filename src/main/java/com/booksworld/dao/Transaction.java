@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,7 +57,7 @@ public class Transaction {
 	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
-	private Book userId;
+	private User userId;
 	
 	@ManyToOne
 	@JoinColumn(name = "BOOK_STATUS", referencedColumnName = "BOOK_STATUS")
@@ -140,12 +139,20 @@ public class Transaction {
 		this.estimatedReturnDate = estimatedReturnDate;
 	}
 
-	public Book getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Book userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpID(String empID) {
+		this.empID = empID;
 	}
 
 	public Book getBookStatus() {
