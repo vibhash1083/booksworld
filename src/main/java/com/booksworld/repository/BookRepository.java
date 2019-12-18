@@ -22,8 +22,9 @@ public interface BookRepository extends JpaRepository<Book,Long>{
 			 nativeQuery = true)
 	 List<Book> findByUserid_and_status(@Param("userid") long userid, @Param("userid") String status) ;
 
-	@Query( value = "select * from BOOK  where BOOK.USER_ID = :userid",
+	@Query( value = "select * from BOOK where BOOK.USER_ID = :userid",
 			 nativeQuery = true)
 	 List<Book> findByUserid(@Param("userid") long userid) ;
 
+//	@Query( value = "select * from transaction inner JOIN book ON transaction.book_id=book.id where transaction.status='booked' and user_id=user",nativeQuery = true)
 }

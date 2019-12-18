@@ -47,12 +47,7 @@ public class BookRestController {
 		}
 		return bookRequests;
 	}
-	
-	@GetMapping("/api/books/")
-	public List<Book> getMyBooksUsingQueryParam(@RequestParam(name = "user_id") long userId) {
-		List<Book> myBooks = bookService.getMyBooks(userId);
-		return myBooks;
-	}
+
 	
 	@PostMapping(path = "/api/book", consumes = "application/json", produces = "application/json")
 	public void saveBook(@RequestBody Book book) {
