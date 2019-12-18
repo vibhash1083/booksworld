@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.booksworld.dao.Book.Status;
@@ -32,7 +31,7 @@ public class Rating {
 	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
-	private Book userId;
+	private User userId;
 	
 	@Column(name = "RATING_VALUE")
 	@Enumerated(EnumType.STRING)
@@ -54,11 +53,11 @@ public class Rating {
 		this.bookId = bookId;
 	}
 
-	public Book getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Book userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 
