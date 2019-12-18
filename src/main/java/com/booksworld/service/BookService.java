@@ -8,6 +8,10 @@ import com.booksworld.dao.Transaction;
 public interface BookService {
 	 public List<Book> retrieveBooks();
 	 
+	 public List<Book> getRequestedBooks(long userId, String status);
+	 
+	 public List<Book> getMyBooks(long userId);
+	 
 	 public Book getBook(Long bookId);
 	 
 	 public void saveBook(Book book);

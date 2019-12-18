@@ -39,8 +39,20 @@ public class BookRestController {
 	}
 	
 	@GetMapping("/api/books/")
-	public String getActiveRequestsUsingQueryParam(@RequestParam(name = "user_id") long userId, @RequestParam(name = "status") String status) {
-	    return bookService.
+	public List<Book> getBooksUsingQueryParam(@RequestParam(name = "user_id") long userId, @RequestParam(name = "status", required = false) String status) {
+		List<Book> bookRequests = bookService.getMyBooks(userId);
+		if(status != null) {
+			bookRequests = bookService.getRequestedBooks(userId,status.toUpperCase());
+		}else {
+			bookRequests = bookService.getMyBooks(userId);
+		}
+		return bookRequests;
+	}
+	
+	@GetMapping("/api/books/")
+	public List<Book> getMyBooksUsingQueryParam(@RequestParam(name = "user_id") long userId) {
+		List<Book> myBooks = bookService.getMyBooks(userId);
+		return myBooks;
 	}
 	
 	@PostMapping(path = "/api/book", consumes = "application/json", produces = "application/json")
