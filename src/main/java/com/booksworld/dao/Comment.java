@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +24,7 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
-	private Book userId;
+	private User userId;
 	
 	@Column(name = "COMMENT", columnDefinition="TEXT")
 	private String comment;
@@ -47,11 +45,11 @@ public class Comment {
 		this.bookId = bookId;
 	}
 
-	public Book getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Book userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 

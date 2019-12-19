@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.booksworld.dao.Book;
 import com.booksworld.dao.User;
 import com.booksworld.service.UserService;
 

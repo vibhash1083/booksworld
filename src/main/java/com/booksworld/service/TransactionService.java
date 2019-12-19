@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.booksworld.dao.Book;
 import com.booksworld.dao.Transaction;
-import com.booksworld.dao.Book;
 
 public interface TransactionService {
 

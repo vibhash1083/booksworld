@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.booksworld.dao.Book;
-import com.booksworld.dao.Transaction;
 
 import com.booksworld.service.BookService;
 
@@ -38,6 +38,18 @@ public class BookRestController {
 	public Book getBook(@PathVariable(name = "bookId") Long bookId) {
 		return bookService.getBook(bookId);
 	}
+	
+	@GetMapping("/api/books/")
+	public List<Book> getBooksUsingQueryParam(@RequestParam(name = "user_id") long userId, @RequestParam(name = "status", required = false) String status) {
+		List<Book> bookRequests = bookService.getMyBooks(userId);
+		if(status != null) {
+			bookRequests = bookService.getRequestedBooks(userId,status.toUpperCase());
+		}else {
+			bookRequests = bookService.getMyBooks(userId);
+		}
+		return bookRequests;
+	}
+
 	
 	@PostMapping(path = "/api/book", consumes = "application/json", produces = "application/json")
 	public void saveBook(@RequestBody Book book) {
