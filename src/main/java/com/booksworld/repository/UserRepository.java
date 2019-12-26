@@ -9,12 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.booksworld.dao.User;
 
-
-
 @Repository
 public interface UserRepository extends JpaRepository<User,Long>{
-	
-
+//	User findByUsername(String username);
 }
 
 
