@@ -47,6 +47,9 @@ httpSecurity.csrf().disable()
 // dont authenticate this particular request
 .authorizeRequests().antMatchers("/authenticate").permitAll().
 and().authorizeRequests().antMatchers("/api/books").permitAll().
+//and().authorizeRequests().antMatchers("/h2/").permitAll().
+and().authorizeRequests().antMatchers("/h2/**").permitAll().
+and().authorizeRequests().antMatchers("/api/book").permitAll().
 // all other requests need to be authenticated
 anyRequest().authenticated().and().
 // make sure we use stateless session; session won't be used to
@@ -55,5 +58,6 @@ exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().
 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 // Add a filter to validate the tokens with every request
 httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+httpSecurity.headers().frameOptions().disable();
 }
 }
