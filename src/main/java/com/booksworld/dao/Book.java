@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "BOOK")
+//@Table(name = "BOOK")
 public class Book{
 	
 	public enum Status{

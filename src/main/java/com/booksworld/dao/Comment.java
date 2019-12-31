@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COMMENT")
+//@Table(name = "COMMENT", schema="booksworld")
 public class Comment {
 	
 	@Id

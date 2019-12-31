@@ -17,7 +17,7 @@ enum Ratings{
 	 VERYPOOR,POOR,AVERAGE,GOOD,BEST
 }
 @Entity
-@Table(name = "RATINGS")
+//@Table(name = "RATINGS", schema="booksworld")
 public class Rating {
 	
 	@Id
